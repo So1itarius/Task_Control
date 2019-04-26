@@ -1,0 +1,61 @@
+{% block window %}
+   <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+    </head>
+    <body>
+
+    <li>
+      <!-- Button to Open the Modal -->
+        {% if user_id==item[3] %}
+             <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" id="{{item[0]}}" data-target="#myModal{{item[0]}}">{{item[1]}}</a>
+        {% else %}
+              <a href="#" class="list-group-item disabled">{{item[1]}}</a>
+        {% endif %}
+
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal{{item[0]}}">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h1 class="modal-title">{{item[1]}}</h1>
+              <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <h3>{{item[1]}}</h3>
+              <p>{{item[2]}}</p>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+            <div id="form-check-inline{{item[0]}}">
+
+                <input type="checkbox" class="form-check-input" id="check1{{item[0]}}" name="vehicle1" value="#check1{{item[0]}}">В процессе<br>
+                <input type="checkbox" class="form-check-input" id="check2{{item[0]}}" name="vehicle1" value="#check2{{item[0]}}">Готово
+
+            </div>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+            </div>
+               <script>
+                $('#form-check-inline{{item[0]}} input:checkbox').click(function(){
+                    if ($(this).is(':checked')) {
+                         $('#form-check-inline{{item[0]}} input:checkbox').not(this).prop('checked', false);
+                    }
+                });
+                </script>
+
+          </div>
+        </div>
+      </div>
+
+    </li>
+
+    </body>
+
+{% endblock window %}

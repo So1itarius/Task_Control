@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+        <title>Доска</title>
+        <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="//yandex.st/jquery/2.1.1/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
+
+         <style>
+              a {
+                margin: 8px;
+                font-size: 16px;
+              }
+              .selected {
+                color: red;
+              }
+              .highlight {
+                background: yellow;
+              }
+              .list-group-item list-group-item-action list-group-item-warning {
+
+              }
+              .list-group-item list-group-item-action{
+
+              }
+               .list-group-item list-group-item-action list-group-item-success{
+
+              }
+               li {
+                    list-style-type: none;
+                   }
+                ul {
+                    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+                   }
+
+         </style>
+        <script>
+        $(document).ready(function(){
+          $("#div1").hide();
+          $("#hide").click(function(){
+            $("#div1").hide();
+          });
+          $("#show").click(function(){
+            $("#div1").show();
+          });
+        });
+        </script>
+        </head>
+        <body>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <div class="alert alert-info" role="alert">
+                              {% for message in messages %}
+                              {{ message }}<br>
+                              {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+        <h2> {% if user %}
+                Привет {{user}}, вот cписок задач:
+             {% else %}
+                Привет незнакомец, вот cписок задач:
+             {% endif %}
+        </h2>
+        <p><a href="{{ url_for('login') }}">Войти</a></p>
+        <p><a href="{{ url_for('logout') }}">Выйти</a></p>
+        <form  action="{{url_for('process_status')}}" method="post">
+           {%if form1%}
+             {{ form1.submit }}
+          {% endif%}
+        <ul class="sortable-ul">
+            {%if data%}
+                {% for item in data %}
+                  {% include 'task.html'%}
+                 <script>
+                      $('#check1{{item[0]}},#check2{{item[0]}}').click(function(){
+                      if ($('#check1{{item[0]}}').is(':checked')) {
+                            $('#{{item[0]}}').removeClass()
+                            .addClass('list-group-item list-group-item-action list-group-item-warning');
+                        }
+                        else if ($('#check2{{item[0]}}').is(':checked')) {
+                            $('#{{item[0]}}').removeClass()
+                            .addClass('list-group-item list-group-item-action list-group-item-success');
+                        }
+                        else {
+                            $('#{{item[0]}}').removeClass()
+                            .addClass('list-group-item list-group-item-action');
+                        }
+                           });
+                 </script>
+                {%endfor%}
+            {% endif %}
+        </ul>
+             <script>
+
+                   $('{{l}}').trigger('click');
+
+              </script>
+            <!--<script>
+            $('.sortable-ul').sortable();
+            </script>-->
+        </form>
+             <div class="card" id="div1" style="width: 20rem;">
+                    <form action="{{url_for('process_task')}}" method="post">
+                    <div class="form-group">
+                        {{ form.csrf_token }}
+                            <span class="badge badge-secondary" id="inputGroup-sizing-default">{{form.headline.label}}</span>
+                            {{ form.headline() }}
+                            <span class="badge badge-secondary">{{ form.task.label }}</span>
+                            {{ form.task() }}
+                        </div>
+                       {{ form.submit }}
+                    </form>
+            </div>
+        <!--<input class="form-control" type="text" placeholder="Default input">-->
+        <div class="btn-group" role="group" aria-label="Basic example">
+           <button id="show" class="btn btn-primary" type="submit">Добавить новую задачу</button>
+           <button type="button" id="hide" class="btn btn-outline-dark">Скрыть</button>
+         </div>
+
+         <script>
+           function checkElements(classname) {
+                  $("input[type='checkbox']").each(function() {
+                    if ($(this).) {
+                      $(this).prop("checked", true);
+                    } else {
+                      $(this).prop("checked", false);
+                    }
+                  });
+                }
+         </script>
+         </body>
+
+{% endblock content%}
+
+

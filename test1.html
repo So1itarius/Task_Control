@@ -1,0 +1,20 @@
+<div class="text-center">
+	<p><label class="checkbox"><input type="checkbox" id="checkbox" value="1-true"> checkbox</label></p>
+	<p><a id="btn" href="#">Програмно кликнуть по checkbox</a></p>
+</div>
+
+<style>
+.checkbox {
+	display: inline-block;
+    margin: 0;
+	line-height: 21px;
+}
+</style>
+
+<script src="//yandex.st/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$('#btn').click(function(){
+	$('#checkbox').trigger('click');
+    return false;
+});
+</script>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>addClass demo</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+  p {
+    margin: 8px;
+    font-size: 16px;
+  }
+  .selected {
+    color: red;
+  }
+  .highlight {
+    background: yellow;
+  }
+  .list-group-item list-group-item-action list-group-item-warning {
+
+  }
+  .list-group-item list-group-item-action{
+
+  }
+  .list-group-item list-group-item-action list-group-item-success{
+
+  }
+  .form-check-label1 {
+    position: absolute;
+    left: 612px;
+
+   }
+   .form-check-label2 {
+    position: absolute;
+    left: 412px;
+
+   }
+
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+<body>
+
+<p><a href="#">Hello</a></p>
+<p>and</p>
+<p>Goodbye</p>
+<p><a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a></p>
+
+<div id="group">
+<label class="form-check-label1" for="check11">
+      <input type="checkbox" class="form-check-input" id="check11" name="vehicle1" value="something" >В процессе
+</label>
+<label class="form-check-label2" for="check21">
+      <input type="checkbox" class="form-check-input" id="check21" name="vehicle1" value="something" >готово
+</label>
+</div>
+<script>
+$('#group input:checkbox').click(function(){
+    if ($(this).is(':checked')) {
+         $('#group input:checkbox').not(this).prop('checked', false);
+    }
+});
+</script>
+    <script>
+    $('#check11,#check21').click(function(){
+    if ($('#check11').is(':checked')) {
+        $('p a').last().removeClass()
+        .addClass('list-group-item list-group-item-action list-group-item-warning');
+    }
+    else if ($('#check21').is(':checked')) {
+        $('p a').last().removeClass()
+        .addClass('list-group-item list-group-item-action list-group-item-success');
+    }
+    else {
+        $('p a').last().removeClass()
+        .addClass('list-group-item list-group-item-action');
+    }
+    });
+    </script>
+</body>
+</html>
