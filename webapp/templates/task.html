@@ -4,7 +4,6 @@
       <meta charset="utf-8">
     </head>
     <body>
-
     <li>
       <!-- Button to Open the Modal -->
         {% if user_id==item[3] %}
@@ -12,7 +11,6 @@
         {% else %}
               <a href="#" class="list-group-item disabled">{{item[1]}}</a>
         {% endif %}
-
       <!-- The Modal -->
       <div class="modal fade" id="myModal{{item[0]}}">
         <div class="modal-dialog modal-dialog-centered">
@@ -33,12 +31,9 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-
             <div id="form-check-inline{{item[0]}}">
-
                 <input type="checkbox" class="form-check-input" id="check1{{item[0]}}" name="vehicle1" value="#check1{{item[0]}}">В процессе<br>
                 <input type="checkbox" class="form-check-input" id="check2{{item[0]}}" name="vehicle1" value="#check2{{item[0]}}">Готово
-
             </div>
               <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
             </div>
@@ -49,13 +44,10 @@
                     }
                 });
                 </script>
-
           </div>
         </div>
       </div>
-
     </li>
-
     </body>
 
 {% endblock window %}
