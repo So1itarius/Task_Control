@@ -1,9 +1,9 @@
 # -*- coding: utf8 -*-
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, ValidationError, EqualTo
-from webapp.model import User
+from webapp.user.models import User
 
 
 class LoginForm(FlaskForm):
@@ -29,17 +29,3 @@ class RegistrationForm(FlaskForm):
         users_count = User.query.filter_by(email=email.data).count()
         if users_count > 0:
             raise ValidationError('Пользователь с такой электронной почтой уже зарегистрирован')
-
-
-class TaskForm(FlaskForm):
-    headline = StringField('Заголовок задачи', validators=[DataRequired()], render_kw={"class": "form-control",
-                                                                                       "aria-label": "Sizing example input",
-                                                                                       "aria-describedby": "inputGroup-sizing-default"})
-    task = TextAreaField('Описание задачи', validators=[DataRequired()], render_kw={"class": "form-control",
-                                                                                    "aria-label": "With textarea"})
-    submit = SubmitField('Отправить', render_kw={"class": "btn btn-secondary btn-lg btn-block btn-info"})
-
-
-class StatusForm(FlaskForm):
-    status = TextAreaField('скрытое поле ввода', validators=[DataRequired()])
-    submit = SubmitField('Сохранить изменения', render_kw={"class": "btn btn-outline-success"})

@@ -59,14 +59,14 @@
                     <span class="nav-link" >Привет незнакомец, войдите, чтобы получить доступ к задачам</span>
             {% endif %}
         </h2>
-        <form  action="{{url_for('process_status')}}" method="post">
+        <form  action="{{url_for('board.process_status')}}" method="post">
            {%if form1%}
              {{ form1.submit }}
           {% endif%}
         <ul class="sortable-ul">
             {%if data%}
                 {% for item in data %}
-                  {% include 'task.html'%}
+                  {% include 'task_table/task.html'%}
                  <script>
                       $('#check1{{item[0]}},#check2{{item[0]}}').click(function(){
                       if ($('#check1{{item[0]}}').is(':checked')) {
@@ -94,7 +94,7 @@
             </script>-->
         </form>
              <div class="card" id="div1" style="width: 20rem;">
-                    <form action="{{url_for('process_task')}}" method="post">
+                    <form action="{{url_for('board.process_task')}}" method="post">
                     <div class="form-group">
                         {{ form.csrf_token }}
                             <span class="badge badge-secondary" id="inputGroup-sizing-default">{{form.headline.label}}</span>
